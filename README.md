@@ -23,6 +23,11 @@
 - **Small-sample evaluation** - Varoquaux shows wide prediction-accuracy uncertainty in small neuroimaging samples. Standard errors across folds can understate it; resampling cannot substitute for collecting independent observations. [Varoquaux 2017](<https://arxiv.org/abs/1706.07581> "Cross-validation failure: small sample sizes lead to large error bars; arXiv").
 - **Training and search variability** - Bouthillier et al. find data sampling, initialization and hyperparameter choices materially affect comparisons on five tasks. Repeating one fitted model's test evaluation misses these sources. [Bouthillier et al. 2021](<https://arxiv.org/abs/2103.03098> "Accounting for Variance in Machine Learning Benchmarks; arXiv").
 - **Stratified bootstrap intervals** - Resample runs within benchmark tasks to quantify uncertainty in aggregate scores. Specify whether tasks themselves are fixed or sampled; the resampling unit determines the uncertainty represented. [Agarwal et al. 2021](<https://arxiv.org/abs/2108.13264> "Deep Reinforcement Learning at the Edge of the Statistical Precipice; NeurIPS").
+- **Confidence sequences** - Builds intervals valid simultaneously over time, allowing data-dependent stopping. Martingale concentration bounds require stated tail or boundedness assumptions; repeated monitoring costs wider intervals. [Howard et al. 2021](<https://arxiv.org/abs/1810.08240v9> "Time-uniform, nonparametric, nonasymptotic confidence sequences; Ann. Statist."); [code](<https://github.com/gostevehoward/confseq>).
+
+## Statistical inference using predictions
+
+- **Prediction-powered inference** - Uses labeled data to correct prediction-based population estimates and intervals. The basic setup needs i.i.d. samples and an independent predictor; the paper's basic intervals are asymptotic, and weak predictions can widen them. [Angelopoulos et al. 2023](<https://arxiv.org/abs/2301.09633v4> "Prediction-powered inference; Science"); [code](<https://github.com/aangelopoulos/ppi_py>).
 
 ## Metrics and scoring rules
 
@@ -33,9 +38,12 @@
 - **Interval scores** - Combine interval width with penalties for observations outside the interval. Coverage alone rewards arbitrarily wide intervals and misses useful sharpness. [Gneiting and Raftery 2007](<https://sites.stat.washington.edu/people/raftery/Research/PDF/Gneiting2007jasa.pdf> "Strictly Proper Scoring Rules, Prediction, and Estimation; JASA").
 - **Calibration-error estimation** - Binning, sample size and estimator bias affect reported calibration. Kumar et al. develop more accurate estimators and scaling-binning calibration; smooth reliability plots alone are insufficient evidence. [Kumar et al. 2019](<https://arxiv.org/abs/1909.10155> "Verified Uncertainty Calibration; NeurIPS").
 
-## Prediction-set coverage
+<a id="prediction-set-coverage"></a>
+
+## Prediction-set coverage and risk control
 
 - **Split conformal prediction** - Calibrates a fitted predictor's scores on held-out data to form prediction sets. Exchangeability supports finite-sample marginal coverage; report set size and subgroup coverage; the guarantee is not conditional on every input. [Angelopoulos and Bates 2021](<https://arxiv.org/abs/2107.07511> "A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification; arXiv").
+- **Conformal risk control** - Calibrates a threshold to bound expected loss over calibration and test draws. Requires exchangeable, bounded, non-increasing, right-continuous losses and an achievable target; the guarantee is not per input. [Angelopoulos et al. 2024](<https://proceedings.iclr.cc/paper_files/paper/2024/hash/f3549ef9b5ff520a7e41ff3cc306ab2b-Abstract-Conference.html> "Conformal Risk Control; ICLR"); [code](<https://github.com/aangelopoulos/conformal-risk>).
 - **Conformal prediction under covariate shift** - Weights calibration scores by target-to-training covariate density ratios while holding the conditional response law fixed. Exact known-weight guarantees do not automatically carry over to inaccurately estimated ratios. [Tibshirani et al. 2019](<https://arxiv.org/abs/1904.06019> "Conformal Prediction Under Covariate Shift; NeurIPS").
 
 ## Statistical comparisons
