@@ -47,6 +47,17 @@
 
 - **Reject option and selective prediction** - Chow derives a Bayes-optimal error-reject trade-off from true class posteriors. Geifman-El-Yaniv bounds selective risk under IID calibration. Coverage is the acceptance rate; risk is error among accepted predictions. [Chow 1957](<https://doi.org/10.1109/TEC.1957.5222035> "An optimum character recognition system using decision functions; IRE Transactions on Electronic Computers"), [Chow 1970](<https://doi.org/10.1109/TIT.1970.1054406> "On optimum recognition error and reject tradeoff; IEEE Transactions on Information Theory"), [Geifman and El-Yaniv 2017](<https://proceedings.neurips.cc/paper/2017/file/4a8423d5e91fda00bb7e46540e2b0cf1-Paper.pdf> "Selective Classification for Deep Neural Networks; NeurIPS").
 
+## Predictive calibration
+
+- **Multiclass probability calibration** - Transforms classifier scores into multiclass probability estimates. [Zadrozny and Elkan 2002](<https://doi.org/10.1145/775047.775151> "Transforming classifier scores into accurate multiclass probability estimates; KDD").
+- **Predicting good probabilities** - Compares distortions in classifier probabilities and correction by Platt scaling or isotonic regression; calibration method and calibration-set size affect results. [Niculescu-Mizil and Caruana 2005](<https://www.cs.cornell.edu/~alexn/papers/calibration.icml05.crc.rev3.pdf> "Predicting good probabilities with supervised learning; ICML").
+- **Nearly-isotonic regression** - Relaxes monotonicity through a convex penalty and computes a path of fits; intermediate solutions help examine whether strict monotonicity is appropriate. [Tibshirani et al. 2011](<https://www.stat.cmu.edu/~ryantibs/papers/neariso.pdf> "Nearly-Isotonic Regression; Technometrics").
+    - **Ensembles of calibration models** - Studies ensembles of near-isotonic regression for binary probability calibration and compares them with linear-trend calibration; relaxes strict isotonicity. [Pakdaman Naeini and Cooper 2017](<https://www.ncbi.nlm.nih.gov/pmc/articles/5875942> "Binary classifier calibration using an ensemble of piecewise linear regression models; Knowl Inf Syst").
+- **Beta calibration** - Introduces a parametric calibration family for binary classifiers that includes the identity map and accommodates skewed score distributions. [Kull et al. 2017](<https://proceedings.mlr.press/v54/kull17a.html> "Beta calibration: a well-founded and easily implemented improvement on logistic calibration for binary classifiers; AISTATS").
+- **Temperature scaling** - Evaluates modern neural-network calibration and a single-parameter post-processing baseline; effectiveness on the evaluated datasets does not guarantee calibration after distribution shift. [Guo et al. 2017](<https://proceedings.mlr.press/v70/guo17a.html> "On Calibration of Modern Neural Networks; ICML").
+- **CRUDE** - Calibrates regression uncertainty using empirical errors; assumes a common residual-distribution shape after shifting by predicted means and scaling by predicted standard deviations. [Zelikman et al. 2020](<https://arxiv.org/abs/2005.12496> "CRUDE: Calibrating Regression Uncertainty Distributions Empirically; ICML UDL Workshop").
+- **Label-free calibration transfer** - Projects predictions toward compatibility with a calibrated reference using unlabeled paired outputs. Proper-loss improvement requires a calibrated reference and failure of mutual calibration; reference errors can offset the gain. [Kong et al. 2026](<https://arxiv.org/abs/2601.19862v1> "Calibration without Ground Truth; NeurIPS").
+
 ## Prediction-set coverage and risk control
 
 - **Conformal prediction under covariate shift** - Weights calibration scores by target-to-training covariate density ratios while holding the conditional response law fixed. Exact known-weight guarantees do not automatically carry over to inaccurately estimated ratios. [Tibshirani et al. 2019](<https://arxiv.org/abs/1904.06019> "Conformal Prediction Under Covariate Shift; NeurIPS").
@@ -78,6 +89,7 @@
 - **Select-LLM** - Chooses queries to reduce uncertainty about the best model. Across 23 datasets, needs fewer reference labels than adapted active-selection baselines. Uses precomputed model outputs and reliable references; savings exclude model-inference cost. [Durmazkeser et al. 2026](<https://arxiv.org/abs/2605.24981v1> "Large Language Model Selection with Limited Annotations; NeurIPS").
 
 <a id="software-and-references"></a>
+
 - **Verbalized evaluation awareness** - Across eight open models and four benchmarks, inserting awareness sentences mid-trace or removing them changes answers little. Removal excludes unsuccessful edits; this tests verbalized awareness, not hidden evaluation detection or gaming. [Knecht et al. 2026](<https://arxiv.org/abs/2605.05835v1> "Evaluation Awareness in Language Models Has Limited Effect on Behaviour; NeurIPS").
 
 ## Software
